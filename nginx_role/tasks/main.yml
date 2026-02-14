@@ -1,0 +1,25 @@
+- name: Install nginx
+  dnf:
+    name: nginx
+    state: present
+
+- name: Create files directory
+  file:
+    path: /usr/share/nginx/files
+    state: directory
+    mode: '0755'
+
+- name: Set SELinux context
+  command: chcon -Rt httpd_sys_content_t /usr/share/nginx/files
+
+- name: Deploy nginx config
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/files.conf
+
+- name: Enable and restart nginx
+  service:
+    name: nginx
+    enabled: yes
+    state: restarted
+

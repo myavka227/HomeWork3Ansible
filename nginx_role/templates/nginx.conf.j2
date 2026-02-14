@@ -1,0 +1,9 @@
+server {
+    listen {{ nginx_port }};
+    server_name localhost;
+
+    location /files {
+        alias /usr/share/nginx/files;
+        autoindex on;
+    }
+}
