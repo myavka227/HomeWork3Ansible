@@ -2,3 +2,10 @@
   become: yes
   roles:
     - nginx_role
+
+- hosts: web
+  become: yes
+  tasks:
+    - name: Call custom nginx module
+      nginx_port:
+        port: 8080
