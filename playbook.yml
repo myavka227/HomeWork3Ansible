@@ -9,3 +9,10 @@
     - name: Call custom nginx module
       nginx_port:
         port: 8080
+- hosts: web
+  become: yes
+  tasks:
+    - name: Configure nginx port via custom module
+      nginx_port:
+        port: 8080
+
